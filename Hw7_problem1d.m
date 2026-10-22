@@ -32,31 +32,3 @@ for j = 1:numel(sampleSizes)
         n,scatterMean(j),scatterMedian(j));
 end
 
-Results = table(sampleSizes(:),scatterMean(:),scatterMedian(:), ...
-    'VariableNames',{'n','MeanScatter','MedianScatter'});
-disp(Results);
-
-figure('Color','w');
-loglog(sampleSizes,scatterMean,'o-','LineWidth',1.5, ...
-    'MarkerSize',7);
-hold on;
-loglog(sampleSizes,scatterMedian,'s-','LineWidth',1.5, ...
-    'MarkerSize',7);
-xlabel('Sample size n');
-ylabel('IQR / 1.349');
-title('Sampling variability of the mean and median');
-legend('Sample mean','Sample median','Location','best');
-grid on;
-hold off;
-
-figure('Color','w');
-histogram(allMeans{3},60,'Normalization','pdf');
-hold on;
-histogram(allMedians{3},40,'Normalization','pdf');
-xline(alphaTrue,'k--','True \alpha','LineWidth',1.5);
-xlabel('Estimator');
-ylabel('Density');
-title('Sampling distributions for n = 1000');
-legend('Sample mean','Sample median','True location');
-grid on;
-hold off;
